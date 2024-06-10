@@ -20,6 +20,8 @@ Requires PHP: 5.6
 */
 
 /* Table of Contents
+- Variables 
+	- Colors
 - HTML5 Reset
 	- Baseline Normalize
 	- Box Sizing
@@ -79,6 +81,46 @@ Requires PHP: 5.6
 - Print Styles
 */
 
+/* Variables 
+---------------------------------------------------------------------------- */
+
+:root {
+	/* Colors */ 
+	color-scheme: dark; 
+	--base: #000;
+	--contrast: #f9f9f9;
+	--accent: #f0b3b3;
+	--dark-accent: #690931;
+	--primary: #a44058;
+	--primary-2: #b76e7c;
+	--wine-gradient: linear-gradient(180deg,rgb(164,64,88) 0%,rgb(105,9,49) 100%);
+	--blush-gradient: linear-gradient(180deg,rgb(230,209,210) 0%,rgb(171,138,138) 100%);
+	--pink-gradient: linear-gradient(280deg, rgb(243, 223, 224) 0%,rgb(234, 187, 187) 100%);
+
+	/* TYPOGRAPHY */
+	--normal: 16px;
+	--xx-small: clamp(12px, 1.5vw, 14px);
+	--x-small: clamp(14px, 1.6vw, 16px);
+	--small: clamp(16px, 1.8vw, 18px);
+	--medium: clamp(18px, 2vw, 20px);
+	--large: clamp(20px, 2.2vw, 22px);
+	--x-large: clamp(24px, 2.5vw, 28px);
+	--xx-large: clamp(28px, 3vw, 36px);
+	--xxx-large: clamp(32px, 3.6vw, 44px);
+	--xxxx-large: clamp(40px, 6.6vw, 56px);
+
+	/*** FONTS 
+		* Including Fallback Fonts
+		*/
+	--icon: "Material Symbols Outlined"; /* Google icons */
+	--sans-serif: "Outfit", "Be Vietnam Pro", "Helvetica", "Verdana", sans-serif;
+	--serif: serif;
+	--display: "Bebas Neue", "Antonio", "Economica", fantasy;
+	--cursive:  "Puisi Adinda", "Dancing Script", "La Belle Aurore", "Petit Formal Script", "Rouge Script", cursive;
+	--monospace: "B612", monospace;
+	--title: "Blackjack", "Dancing Script";
+	--tagline: "The Girl Next Door", "Handlee", "Charmonman";
+}
 
 /* HTML5 Reset
 ---------------------------------------------------------------------------- */
@@ -155,14 +197,18 @@ html {
 }
 
 body {
-	background-color: #fff;
-	color: #333;
-	font-family: "Source Sans Pro", sans-serif;
+	background: var(--base, #000);
+	color: var(--contrast, #f9f9f9);
+	font-family: "Outfit", sans-serif;
 	font-size: 18px;
 	font-weight: 400;
-	line-height: 1.625;
+	line-height: 1.5em;
 	margin: 0;
 	overflow-x: hidden;
+	width: 100%;
+	max-width: 100vw;
+	height: 100%;
+	min-height: 100vh;
 }
 
 button,
@@ -177,20 +223,21 @@ textarea:focus,
 }
 
 a {
-	color: #0073e5;
+	color: var(--accent, #f0b3b3);
 	text-decoration: underline;
 	transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
 a:focus,
 a:hover {
-	color: #333;
+	color: var(--contrast, #f9f9f9); 
 	text-decoration: none;
 }
 
 p {
-	margin: 0 0 28px;
+	margin: 0 0 1.5rem;
 	padding: 0;
+	font-size: var(--medium, 18px); 
 }
 
 ol,
@@ -987,10 +1034,13 @@ figcaption,
 ---------------------------------------------------------------------------- */
 
 .site-header {
-	background-color: #fff;
+	background: var(--wine-gradient); 
+	color: var(--contrast); 
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
 	padding: 0 30px;
 }
+
+header a {text-decoration: none;}
 
 /* Title Area
 --------------------------------------------- */
@@ -1017,9 +1067,9 @@ figcaption,
 }
 
 .site-title {
-	font-size: 20px;
+	font-size: 2rem;
 	font-weight: 600;
-	line-height: 1;
+	line-height: 1em;
 	margin-bottom: 0;
 }
 
