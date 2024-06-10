@@ -98,15 +98,14 @@ Requires PHP: 5.6
 	--pink-gradient: linear-gradient(280deg, rgb(243, 223, 224) 0%,rgb(234, 187, 187) 100%);
 
 	/* TYPOGRAPHY */
-	--normal: 16px;
-	--xx-small: clamp(12px, 1.5vw, 14px);
-	--x-small: clamp(14px, 1.6vw, 16px);
-	--small: clamp(16px, 1.8vw, 18px);
+	--x-small: clamp(12px, 1.5vw, 14px);
+	--small: clamp(14px, 1.6vw, 16px);
+	--normal: clamp(16px, 1.8vw, 18px);
 	--medium: clamp(18px, 2vw, 20px);
 	--large: clamp(20px, 2.2vw, 22px);
 	--x-large: clamp(24px, 2.5vw, 28px);
-	--xx-large: clamp(28px, 3vw, 36px);
-	--xxx-large: clamp(32px, 3.6vw, 44px);
+	--xx-large: clamp(28px, 3vw, 32px);
+	--xxx-large: clamp(32px, 3.6vw, 40px);
 	--xxxx-large: clamp(40px, 6.6vw, 56px);
 
 	/*** FONTS 
@@ -210,6 +209,7 @@ body {
 	font-weight: 400;
 	line-height: 1.5em;
 	text-rendering: optimizeLegibility;
+	font-variant: no-common-ligatures proportional-nums;
 	/* Layout */
 	margin: 0;
 	overflow-x: hidden;
@@ -230,6 +230,21 @@ textarea:focus,
 	transition: all 0.2s ease-in-out;
 }
 
+/* Fonts */ 
+.sans-serif {font-family: var(--sans-serif);}
+.serif {font-family: var(--serif);}
+
+.cursive {
+	font-family: var(--cursive); 
+	font-variant: normal; 
+}
+
+.monospace {
+	font-family: var(--monospace);
+	font-style: normal;
+	font-synthesis: weight position small-caps;
+}
+
 /* Links */ 
 a {
 	color: var(--accent, #f0b3b3);
@@ -247,7 +262,14 @@ a:hover {
 p {
 	margin: 0 0 1.5rem;
 	padding: 0;
-	font-size: var(--medium, 18px); 
+	font-size: var(--normal, 18px); 
+	text-wrap: pretty; 
+	letter-spacing: 0.035em; 
+	word-spacing: 0.75em; 
+}
+
+hgroup {
+	padding: 1.25rem 0;
 }
 
 /* Lists */ 
@@ -295,10 +317,13 @@ mark {
 	color: #333;
 }
 
+pre {white-space: pre-wrap;}
+
 /* Quotes */ 
 blockquote {
 	margin: 30px;
 	text-wrap: balance;
+	white-space: break-spaces;
 	font-size: var(--large);
 }
 
@@ -321,6 +346,12 @@ q:after {
 	font-size: 1.5em; 
 }
 
+caption {
+	font-family: var(--monospace);
+	font-size: var(--small);
+	line-height: 1.15em;
+}
+
 /* Icons */
 icon, .icon {
 	font-size: 24px; 
@@ -338,11 +369,25 @@ icon, .icon {
 	'opsz' 24; 
 }
 
+/* Text Styling */ 
+.cursive i, .cursive em {
+	font-variant: normal; 
+	font-style: normal;
+	text-decoration: solid underline 2px; 
+	color: var(--accent); 
+}
+
+.overflow {text-overflow: ellipsis;}
+
+.under {text-decoration: underline;}
+.over {text-decoration: overline;}
+.underover {text-decoration: underline overline;}
+.thick {text-decoration: solid 4px;}
+
+.blink {text-decoration: blink;}
+
 /* Headings
 --------------------------------------------- */
-
-.site-title {font-family: var(--title);}
-.tagline {font-family: var(--tagline);}
 
 h1,
 h2,
@@ -355,12 +400,14 @@ h6 {
 	margin: 0 0 20px;
 	padding-top: .5em; 
 	color: inherit; 
+	text-wrap: balance; 
 }
 
 /* Title */
-h1 {
+h1, .title {
 	font-size: var(--xx-large, 30px);
 	font-family: var(--title); 
+	font-synthesis: position small-caps;
 }
 
 /* Section Heading */
@@ -532,10 +579,10 @@ input[type="submit"],
 .site-container div.wpforms-container-full .wpforms-form input[type="submit"],
 .site-container div.wpforms-container-full .wpforms-form button[type="submit"],
 .button {
-	background-color: #333;
+	background-color: var(--accent);
 	border: 0;
 	border-radius: 5px;
-	color: #fff;
+	color: var(--dark-contrast);
 	cursor: pointer;
 	font-size: 16px;
 	font-weight: 600;
@@ -544,6 +591,7 @@ input[type="submit"],
 	text-decoration: none;
 	white-space: normal;
 	width: auto;
+	font-family: var(--display); 
 }
 
 button:focus,
@@ -1119,7 +1167,7 @@ header a {text-decoration: none;}
 }
 
 .wp-custom-logo .title-area {
-	max-width: 350px;
+	max-width: 150px;
 	padding-bottom: 5px;
 	padding-top: 5px;
 	width: 100%;
@@ -1134,6 +1182,7 @@ header a {text-decoration: none;}
 }
 
 .site-title {
+	font-family: var(--title);
 	font-size: 2rem;
 	font-weight: 600;
 	line-height: 1em;
@@ -1145,6 +1194,10 @@ header a {text-decoration: none;}
 .site-title a:hover {
 	color: #333;
 	text-decoration: none;
+}
+
+.tagline {
+	font-family: var(--tagline);
 }
 
 .site-description,
@@ -1558,7 +1611,7 @@ p.entry-meta {
 ---------------------------------------------------------------------------- */
 
 .site-footer {
-	background-color: #fff;
+	background-color: var(--wine-gradient);
 	border-top: 1px solid #eee;
 	font-size: 15px;
 	line-height: 1.5;
